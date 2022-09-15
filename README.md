@@ -25,6 +25,13 @@ dependent files stripping out conflicting keywords defined within `EXCLUDE_PATTE
 
 ### Given
 
+The schema with
+- [address.proto](./test/schema/address.proto)
+- [employee.proto](./test/schema/employee.proto)
+- [organization.proto](./test/schema/organization.proto)
+
+and file structure
+
     /test/schema/
                 address.proto
                 employee.proto          # depends on address.proto
