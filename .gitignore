@@ -1,0 +1,7 @@
+/.idea/
+/events/
+*/*.iml
+*/target
+/target/
+/.env
+/secrets-loader.iml

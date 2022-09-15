@@ -1,0 +1,12 @@
+package com.test;
+
+message Address {
+
+    required string city = 1;
+
+    required string zip = 2;
+
+    required string country = 3;
+
+    required string street = 4;
+}

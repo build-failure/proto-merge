@@ -1,0 +1,10 @@
+package com.test;
+
+import "schema/address.proto";
+
+message Employee {
+
+    required string first_name = 1;
+
+    required Address address = 2;
+}

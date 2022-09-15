@@ -1,0 +1,11 @@
+version: "2.3"
+services:
+    protoc:
+        image: build-failure/proto-merge:dev
+        build:
+            context: .
+        volumes:
+            - ./test/schema:/schema
+        stdin_open: true # docker run -i
+        tty: true
+        entrypoint: ["/bin/bash"]

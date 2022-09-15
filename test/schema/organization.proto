@@ -1,0 +1,10 @@
+package com.test;
+
+import "schema/employee";
+
+message Organization {
+
+    required string name = 1;
+
+    repeated Employee employees = 2;
+}
