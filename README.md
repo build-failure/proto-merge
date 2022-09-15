@@ -4,7 +4,7 @@ CLI utility to resolve and merge dependent `.proto` schema files based on [proto
 Produces self-contained `.proto` schema files while resolving [import definitions](https://developers.google.com/protocol-buffers/docs/proto3#importing_definitions).
 
 ## Limitations
-While [protoc](https://github.com/protocolbuffers/protobuf) does the import definition resolution, it solely concatenates
+While [protoc](https://github.com/protocolbuffers/protobuf) does the import definition resolution, [proto-merge](./) solely concatenates
 dependent files stripping out conflicting keywords defined within `EXCLUDE_PATTERN` environment variable.
 
 ## Usage
@@ -23,47 +23,18 @@ dependent files stripping out conflicting keywords defined within `EXCLUDE_PATTE
 
 ## Example
 
-### Input
-/address.proto
+### Given
 
-    package com.test;
+    /test/schema/
+                address.proto
+                employee.proto          # depends on address.proto
+                organization.proto      # depends on employee.proto
 
-    message Address {
+### When
 
-        required string city = 1;
+    docker run -v "./test/schema:/schema" buildfailure/proto-merge:latest /schema/employee.proto
 
-        required string zip = 2;
-
-        required string country = 3;
-
-        required string street = 4;
-    }
-/employee.proto
-
-    package com.test;
-
-    import "schema/address.proto";
-
-    message Employee {
-
-        required string first_name = 1;
-
-        required Address address = 2;
-    }
-/organization.proto
-
-    package com.test;
-
-    import "schema/employee";
-
-    message Organization {
-
-        required string name = 1;
-
-        repeated Employee employees = 2;
-    }
-### Output
-/organization.proto
+### Then
 
     message Address {
 
@@ -81,11 +52,4 @@ dependent files stripping out conflicting keywords defined within `EXCLUDE_PATTE
         required string first_name = 1;
 
         required Address address = 2;
-    }
-
-    message Organization {
-
-        required string name = 1;
-
-        repeated Employee employees = 2;
     }
