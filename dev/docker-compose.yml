@@ -1,7 +1,7 @@
 version: "2.3"
 services:
     protoc:
-        image: build-failure/proto-merge:dev
+        image: buildfailure/proto-merge:dev
         build:
             context: .
         volumes:

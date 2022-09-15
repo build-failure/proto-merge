@@ -1,6 +1,8 @@
+syntax = "proto2";
+
 package com.test;
 
-import "schema/employee";
+import "schema/employee.proto";
 
 message Organization {
 
