@@ -17,7 +17,7 @@ dependent files stripping out conflicting keywords defined within `EXCLUDE_PATTE
 |---|---|---|---|
 | --debug | DEBUG | Enables debugging messages  | `false` |
 | --print_stdout  | PRINT_STDOUT  | Prints results to stdout | `true` |
-| --exclude_pattern  | EXCLUDE_PATTERN  | Defines exclude regex pattern to strip conflicting schema keywords (e.g. import, syntax) | 'import\s*|package\s*|syntax\s*=" |
+| --exclude_pattern  | EXCLUDE_PATTERN  | Defines exclude regex pattern to strip conflicting schema keywords (e.g. import, syntax) | import\s*|package\s*|syntax\s*= |
 | --proto_path_in  | PROTO_PATH_IN  | Defines `.proto` schema parent input dir  | `/` |
 | --proto_path_out  | PROTO_PATH_OUT  | Defines `.proto` schema parent output dir  | `/tmp` |
 
