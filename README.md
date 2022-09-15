@@ -1,8 +1,25 @@
 # Proto Merge
 CLI utility to resolve and merge dependent `.proto` schema files based on [protoc](https://github.com/protocolbuffers/protobuf).
 
+Produces self-contained `.proto` schema files while resolving [import definitions](https://developers.google.com/protocol-buffers/docs/proto3#importing_definitions).
+
+## Limitations
+While [protoc](https://github.com/protocolbuffers/protobuf) does the import definition resolution, it solely concatenates
+dependent files stripping out conflicting keywords defined within `EXCLUDE_PATTERN` environment variable.
+
 ## Usage
-TDB.
+
+    docker run -v "./test/schema:/schema" buildfailure/proto-merge:latest /schema/organization.proto
+
+## Config
+
+| Argument | Environment Variable  | Description | Default |
+|---|---|---|---|
+| --debug | DEBUG | Enables debugging messages  | `false` |
+| --print_stdout  | PRINT_STDOUT  | Prints results to stdout | `true` |
+| --exclude_pattern  | EXCLUDE_PATTERN  | Defines exclude regex pattern to strip conflicting schema keywords (e.g. import, syntax) | 'import\s*|package\s*|syntax\s*=" |
+| --proto_path_in  | PROTO_PATH_IN  | Defines `.proto` schema parent input dir  | `/` |
+| --proto_path_out  | PROTO_PATH_OUT  | Defines `.proto` schema parent output dir  | `/tmp` |
 
 ## Example
 
@@ -65,7 +82,7 @@ TDB.
 
         required Address address = 2;
     }
-    
+
     message Organization {
 
         required string name = 1;
